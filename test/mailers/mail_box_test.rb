@@ -10,6 +10,11 @@ class MailBoxTest < ActionMailer::TestCase
     email = MailBox.add({to: "test@s.com"})
     assert_equal ["test@s.com"], email.to
   end
+  
+  test "email body" do
+    email = MailBox.add({to: "test@s.com", body: "testing"})
+    assert_equal "testing", email.body.to_s
+  end
   # test "the truth" do
   #   assert true
   # end
