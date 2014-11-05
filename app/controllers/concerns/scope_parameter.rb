@@ -17,12 +17,12 @@ module ScopeParameter
 
     def recipients
       invalid_request unless params[:to]
-      @recipients = params[:to].split(",")
+      @recipients = params[:to].split(',')
       invalid_request if @recipients.empty? || recipients_valid? 
     end
 
     def email_regex
-      Regexp.new('\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})(\z|\s<\w+(?:>\z|\s\w+>\z))', true)
+      Regexp.new('(?:^([^<@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z|^(?:\w+\s)+<{1}([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})(?:>{1}$))', true)
     end
 
 end
