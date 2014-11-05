@@ -2,7 +2,7 @@ class MailBox < ActionMailer::Base
   Email = Struct.new(:subject, :body)
 
   after_action :build_email
-  default from: "noreplay@example.com(mailto:noreplay@example.com)"
+  default from: "emailTo <noreply@emailto.herokuapp.com>"
 
   def add(recipients, data={})
     @recipients = recipients
