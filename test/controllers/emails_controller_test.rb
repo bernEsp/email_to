@@ -8,26 +8,31 @@ class EmailsControllerTest < ActionController::TestCase
   
   test "response a basic structure on error" do
     post :create, format: :html
-    assert_equal "{to: jhon@example.com, subject: test, body: test}", response.body
+    assert_equal "{to: jhon@example.com[,bill@example.com], subject: test, body: test}", response.body
   end
 
   test "send email" do
-    post :create, email: {to: "bernardo466@gmail.com", subject: "Hello world", body: "Hi Matte! Sending you an email via this API I just made"}, format: :json
+    post :create, to: "bernardo466@gmail.com", subject: "Hello world", body: "Hi Matte! Sending you an email via this API I just made", format: :json
     assert_response :success
   end
   
   test "send email to multiples recipients" do
-    post :create, email: {to: "bernardo466@gmail.com,test@example.com", subject: "Hello world", body: "Hi Matte! Sending you an email via this API I just made"}, format: :json
+    post :create, to: "bernardo466@gmail.com,test@example.com", subject: "Hello world", body: "Hi Matte! Sending you an email via this API I just made", format: :json
     assert_response :success
   end
   
-  test "send email to multiples recipients split by space recipients structure" do
-    post :create, email: {to: "bernardo466@gmail.com test@example.com", subject: "Hello world", body: "Hi Matte! Sending you an email via this API I just made"}, format: :json
-    assert_equal "please check structure", response.body
+  test "send email to multiples recipients with name" do
+    post :create, to: "bernardo466@gmail.com <bernardo galindo>,test@example.com <tester>", subject: "Hello world", body: "Hi Matte! Sending you an email via this API I just made", format: :json
+    assert_equal ["bernardo466@gmail.com <bernardo galindo>", "test@example.com <tester>"], JSON.parse(response.body)
+  end
+  
+  test "send email return error to multiples recipients split by space recipients structure" do
+    post :create, to: "bernardo466@gmail.com test@example.com", subject: "Hello world", body: "Hi Matte! Sending you an email via this API I just made", format: :json
+    assert_equal "please send this structure {to: jhon@example.com[,bill@example.com], subject: test, body: test}", response.body
   end
 
-  test "send email to multiples recipients split by semicolon as incorrect recipients structure" do
-    post :create, email: {to: "bernardo466@gmail.com;test@example.com", subject: "Hello world", body: "Hi Matte! Sending you an email via this API I just made"}, format: :json
-    assert_equal "please check structure", response.body
+  test "send email return error to multiples recipients split by semicolon as incorrect recipients structure" do
+    post(:create, to: "bernardo466@gmail.com;test@example.com", subject: "Hello world", body: "Hi Matte! Sending you an email via this API I just made", format: :json)
+    assert_equal "please send this structure {to: jhon@example.com[,bill@example.com], subject: test, body: test}", response.body
   end
 end

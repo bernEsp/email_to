@@ -7,7 +7,7 @@ module ScopeParameter
 
   private
     def validate_params
-      invalid_request if params[:email].nil?
+      invalid_request if params.nil?
     end
 
     def recipients_valid?
@@ -16,8 +16,8 @@ module ScopeParameter
     end
 
     def recipients
-      invalid_request unless params[:email][:to]
-      @recipients = params[:email][:to].split(",")
+      invalid_request unless params[:to]
+      @recipients = params[:to].split(",")
       invalid_request if @recipients.empty? || recipients_valid? 
     end
 

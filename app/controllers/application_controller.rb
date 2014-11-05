@@ -6,11 +6,15 @@ class ApplicationController < ActionController::API
   private
   def invalid_request
     respond_with nil do |format|
-      format.json {render json: "please check structure", status: :unprocessable_entity}
+      format.json {render json: "please send this structure #{default_structure}", status: :unprocessable_entity}
     end
   end
 
   def invalid_format
-    render json: "{to: jhon@example.com, subject: test, body: test}", status: :unprocessable_entity
+    render json: default_structure, status: :unprocessable_entity
+  end
+
+  def default_structure
+    "{to: jhon@example.com[,bill@example.com], subject: test, body: test}"
   end
 end
