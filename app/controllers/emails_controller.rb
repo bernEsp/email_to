@@ -1,10 +1,12 @@
 class EmailsController < ApplicationController
-  include ActionController::MimeResponds
-  respond_to :json
+  include ScopeParameter
 
   def create
-    respond_with do |format|
-      format.json { render text: "success", status: :ok}
+    mailer = MailBox.add(@recipients, params[:email])
+    if mailer.deliver
+      render json: @recipients.to_json,  status: :ok
+    else
+      invalid_request
     end
   end
 end
