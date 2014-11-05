@@ -2,7 +2,7 @@ module ScopeParameter
   extend ActiveSupport::Concern
 
   included do
-    before_filter :validate_params, :recipients
+    before_filter :validate_params, :recipients, only: :create
   end
 
   private

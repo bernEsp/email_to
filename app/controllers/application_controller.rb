@@ -2,6 +2,7 @@ class ApplicationController < ActionController::API
   include ActionController::MimeResponds
   rescue_from ActionController::UnknownFormat, with: :invalid_format
   respond_to :json
+  respond_to :html, only: :index
 
   private
   def invalid_request
