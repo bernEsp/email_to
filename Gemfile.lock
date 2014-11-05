@@ -27,12 +27,17 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    addressable (2.3.6)
     arel (5.0.1.20140414130214)
     builder (3.2.2)
     erubis (2.7.0)
     hike (1.2.3)
     i18n (0.6.11)
     json (1.8.1)
+    launchy (2.4.2)
+      addressable (~> 2.3)
+    letter_opener (1.2.0)
+      launchy (~> 2.2)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     mime-types (2.4.3)
@@ -81,6 +86,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  letter_opener
   rails (= 4.1.7)
   rails-api
   spring

@@ -6,6 +6,7 @@ gem 'rails', '4.1.7'
 gem 'rails-api'
 
 gem 'spring', :group => :development
+gem 'letter_opener', group: :development
 
 
 gem 'sqlite3'
