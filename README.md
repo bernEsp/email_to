@@ -1,4 +1,4 @@
-emailMe
+emailTo
 =======
 
-api to send a email
+api to send an email via json
