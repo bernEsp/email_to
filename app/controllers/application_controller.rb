@@ -16,6 +16,6 @@ class ApplicationController < ActionController::API
   end
 
   def default_structure
-    "{to: jhon@example.com[,bill@example.com], subject: test, body: test}"
+    "{to: jhon@example.com[,bill@example.com | bernardo galindo <bernardo.galindo@example.com>], subject: test, body: test}"
   end
 end
