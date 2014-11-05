@@ -31,4 +31,13 @@ class MailBoxTest < ActionMailer::TestCase
     assert_equal "", email.body.to_s
   end
   
+  test "email recipients with name" do
+    email = MailBox.add("Bernardo Galindo <bernardo466@gmail.com>, Tester <test@example.com>", {body: "", subject: "testing"})
+    assert_equal ["bernardo466@gmail.com", "test@example.com"], email.to
+  end
+
+  test "email recipients with email" do 
+    email = MailBox.add("test@s.com,bernardo466@gmail.com", {body: "", subject: "testing"})
+    assert_equal ["test@s.com", "bernardo466@gmail.com"], email.to
+  end
 end
