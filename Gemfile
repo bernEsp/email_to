@@ -9,7 +9,7 @@ gem 'spring', :group => :development
 gem 'letter_opener', group: :development
 
 
-gem 'sqlite3'
+gem 'pg'
 
 
 
