@@ -16,4 +16,4 @@
 # Using secret_token for rails3 compatibility. Change to secret_key_base
 # to avoid deprecation warning.
 # Can be safely removed in a rails3 api-only application.
-EmailTo::Application.config.secret_token = 'f3208811713ec32415b8409446ddd46463b1899af2ea28dc488a19fb24472a44f8c47541089eaa72a89feb75c240621ec8c8a9dd6a9742650444adbdd34d543e'
+EmailTo::Application.config.secret_token = ENV['APP_TOKEN']

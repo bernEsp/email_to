@@ -63,6 +63,18 @@ Rails.application.configure do
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true
+  
+  # Send deprecation notices to registered listeners
+  config.action_mailer.smtp_settings = {
+      :user_name => ENV['SENDGRID_USERNAME'],
+      :password => ENV['SENDGRID_PASSWORD'],
+      :address => ENV['SENDGRID_ADDRESS'],
+      :port => ENV['SENDGRID_PORT'],
+      :domain => ENV["SENDGRID_DOMAIN"],
+      :authentication => :plain,
+      :enable_starttls_auto => true
+  } 
+  config.action_mailer.delivery_method = :smtp
 
   # Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify

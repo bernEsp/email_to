@@ -5,8 +5,11 @@ gem 'rails', '4.1.7'
 
 gem 'rails-api'
 
-gem 'spring', :group => :development
-gem 'letter_opener', group: :development
+group :development do
+  gem 'spring'
+  gem 'letter_opener'
+  gem 'foreman'
+end
 
 
 gem 'pg'

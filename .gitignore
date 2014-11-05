@@ -17,3 +17,6 @@
 
 *.swo
 *.swp
+.env
+Procfile
+config/database.yml
